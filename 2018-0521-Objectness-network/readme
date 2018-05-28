@@ -1,0 +1,13 @@
+motivation：
+	考虑DAVIS数据集的特点，它并非semantic segmentation，只是比object segmentation稍微增强一点
+	希望训练网络，找出每一帧中的object proposal
+	对每个channel处理，取Sigmoid之后计算BCELoss，类似于显著性的方法
+	
+实验效果：
+	训练网络没收敛
+
+思路：
+	应该先做localization，再用一个统一的网络做segmentation（类似于mask rcnn）
+	对每个物体提取proposal时，需要考虑上一帧mask的位置，在它周围提取
+	有一个尝试应该是对的：将semantic segmentation的数据集转化为类似于object segmentation 的数据集，用于网络的预训练
+	
