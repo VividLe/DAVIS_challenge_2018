@@ -1,0 +1,23 @@
+tiramisu56-8chas-sigmoid
+
+使用FC-tiramisu56的结构训练显著性检测网络
+输入包含8通道，（由segmentation mask得到物体紧致的bounding box）
+	裁剪过的image
+	裁剪过的mask
+	整幅图像
+	上一帧的mask
+
+motivation：
+	希望同时引入细致的和粗略的信息，让网络得到更精细的分割结果
+
+实验效果：
+	当使用的监督信息为裁剪过的gt时，loss较大，网络没有收敛
+	当使用整幅图作为gt，网络可以收敛，但还未比较采用新策略与直接输入RGB图像效果的差异
+	
+思路：
+	引入多个输入的想法是有价值的
+	但不应该简单串联，可以考虑两路4通道的输入，
+	分别进行一系列特征提取之后，做correlation filter，之后将特征加权组合
+	
+weights file:
+链接：https://pan.baidu.com/s/1kO7Fa88OvFjiHyEO3jUprQ 密码：becp
