@@ -1,0 +1,14 @@
+思路：
+	引入GrabCut修正，提升mask效果
+
+做法：
+	对mask rcnn生成的proposal，经过筛选之后得到的分割mask，记为comask
+	结合（cropped）image，comask，context image和fomask，由预训练的显著性检测模型可以得到当前帧的saliency map
+	使用GrabCut方法对Saliency map进行修正，加噪声，将不是物体区域的saliency map置为0
+	从修正后的map和comask中二选一，确定较好的segmentation mask
+
+效果：
+	经过这种策略后，得分低于直接使用comask
+	
+后续：
+	文件路径H:\DAVIS_Challenge_2018\code\0525-refine_select
