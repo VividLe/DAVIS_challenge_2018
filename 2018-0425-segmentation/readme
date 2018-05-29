@@ -1,0 +1,15 @@
+思路：
+	为segmentation方法实现一个deep FCN
+
+做法：
+	实现了FC-ResNet*，FC-VGG
+	在网络中移除一些pool层，可以选择使用dilated convolution
+	网络使用U-Net的结构，由小变大，由大变小
+	
+效果：
+	train的loss稳步下降，可以降低到比较小的数值，validation loss最终维持较高
+	可能出现过拟合
+	似乎ResNet-18,34,50在效果上没有太大差异
+	
+后续工作：
+	检查代码，重新train，确保得到一个好的baseline
