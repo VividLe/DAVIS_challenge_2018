@@ -1,0 +1,6 @@
+思路:
+	用8 chas输入，训练普通的segmentation network
+	使用的loss是NLLLoss
+the input contains 8 channels:
+RGB, gird box, context, box
+
