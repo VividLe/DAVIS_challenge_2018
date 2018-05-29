@@ -4,3 +4,6 @@
 the input contains 8 channels:
 RGB, gird box, context, box
 
+训练的model位于
+H:\DAVIS_Challenge_2018\result\0513-cat_tiramisu67-8chs-softmax
+需要进行测试
