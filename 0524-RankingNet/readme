@@ -1,0 +1,21 @@
+思路：
+	使用RankNet对proposal进行merge，生成高质量的proposal
+
+做法：
+（1）训练RankNet，利用DAVIS的train和val data，参考mask rcnn作用于每一帧生成的proposal
+	计算每个小proposal块与gt的重合度，当重合度大于阈值Th时，选为正样例；小于阈值Tl时，选为负样例
+	据此构建triplet 训练数据
+（2）基于FC-VGG网络，使用triplet loss进行训练，期望网络具有编码能力，可以区分一个小块的proposal是否属于特定的object
+	具体而言，我们输入8通道（或4通道）的图像，使用网络提取特征，计算特征之间的距离
+
+效果：
+	训练过程中loss有下降，最终train收敛到较低的值，validation比train高出一定数量
+	经过训练，网络具备了一定的编码能力，使得距离近的重合度高
+
+后续工作：
+	更好地train RankNet，考虑加入correlation filter（相当于加入了时序信息），判断块状proposal与目标区域之间的相关性
+	测试RankNet的两个功能：
+		（1）从块状proposal中选择优良的proposal，merge，对于每个物体生成好的segmentation proposal
+		（2）一个物体的多个proposal（不同方法产生），选出最优的proposal
+	必要文件路径：H:\DAVIS_Challenge_2018\code\0524-RankingNet
+
