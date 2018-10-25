@@ -1,0 +1,7 @@
+训练Objectness网络
+基础网络采用FC-Tiramisu57
+使用VOC2012的数据，输入为RGB图像
+监督信息，将semantic gt转化为objectness的标注，最大物体给1，次大给2，...
+使用SGD+step learning rate进行优化
+
+网络未收敛，代码或思路有问题
